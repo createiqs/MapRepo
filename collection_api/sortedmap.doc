@@ -1,0 +1,20 @@
+ 1. Understanding SortedMap
+The main characteristic of a SortedMap is that, it orders the keys by their natural ordering, or by a specified comparator. So consider using a TreeMap when you want a map that satisfies the following criteria:
+null key or null value are not permitted.
+The keys are sorted either by natural ordering or by a specified comparator.
+
+Range view: returns a sub sorted map whose keys fall within a range of keys in the original map.
+Endpoints: returns the first or last key in the sorted map.
+Comparator access: returns the comparator (implements the Comparator interface), if any, used to sort the map.
+
+* Range View Operations:
++ subMap(K fromKey, K toKey): returns a sorted map whose keys range from fromKey, inclusive, to toKey, exclusive.
++ headMap(K toKey): returns a sorted map whose keys are strictly less than toKey.
++ tailMap(K fromKey): returns a sorted map whose keys are greater than or equal to fromKey.
+ 
+* Endpoint operations:
++ firstKey(): returns the first (lowest) key currently in the map.
++ lastKey(): returns the last (highest) key currently in the map.
+ 
+* Comparator access:
++ comparator(): returns the comparator used to order the keys in the map, or returns null if this map uses the natural ordering of its keys.

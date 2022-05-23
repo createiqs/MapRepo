@@ -1,6 +1,10 @@
 package com.collection.api.map;
 
 import java.util.Hashtable;
+import java.util.Map;
+import java.util.NavigableMap;
+import java.util.NavigableSet;
+import java.util.Set;
 import java.util.TreeMap;
 
 public class NavigableMapDemo {
@@ -12,46 +16,81 @@ public class NavigableMapDemo {
 //		higherKey(K key): returns the least key strictly greater than the given key.
 //		descendingKeySet(): returns a NavigableSet containing the keys in reverse order.
 
-		TreeMap<String, String> contacts = new TreeMap<>();
-		contacts.put("1245365", "Ramu");
-		contacts.put("9848612", "Rahim");
-		contacts.put("9966144", "Akbar");
-		contacts.put("3256472", "Antony");
-		System.out.println(contacts);
+//		TreeMap<String, String> contacts = new TreeMap<>();
+//		contacts.put("1245365", "Ramu");
+//		contacts.put("9848612", "Rahim");
+//		contacts.put("9966144", "Akbar");
+//		contacts.put("3256472", "Antony");
+//		System.out.println(contacts);
 
-		TreeMap<String, String> httpErrors = new TreeMap<>();
-		httpErrors.put("100", "Continue");
-		httpErrors.put("200", "OK");
-		httpErrors.put("303", "See Other");
-		httpErrors.put("300", "Multiple Choices");
-		httpErrors.put("404", "Not Found");
-		httpErrors.put("500", "Internal Server");
-		httpErrors.put("400", "Bad Request");
-		httpErrors.put("401", "Unauthorized");
-		httpErrors.put("402", "Payment Required");
-		httpErrors.put("403", "Forbidden");
-		httpErrors.put("501", "Not Implemented");
-		httpErrors.put("502", "Bad Gateway");
+		TreeMap<String, String> httpStatusCodes = new TreeMap<>();
+		httpStatusCodes.put("100", "Continue");
+		httpStatusCodes.put("200", "OK");
+		httpStatusCodes.put("303", "See Other");
+		httpStatusCodes.put("300", "Multiple Choices");
+		httpStatusCodes.put("404", "Not Found");
+		httpStatusCodes.put("500", "Internal Server");
+		httpStatusCodes.put("400", "Bad Request");
+		httpStatusCodes.put("401", "Unauthorized");
+		httpStatusCodes.put("402", "Payment Required");
+		httpStatusCodes.put("403", "Forbidden");
+		httpStatusCodes.put("501", "Not Implemented");
+		httpStatusCodes.put("502", "Bad Gateway");
 
-		System.out.println(httpErrors);
-//
-//		Hashtable<String, String> hashTable = new Hashtable<>();
-//		hashTable.put("1245365", "Ramu");
-//		hashTable.put("9848612", "Rahim");
-//		hashTable.put("9966144", "Akbar");
-//		hashTable.put("3256472", "Antony");
-////		hashTable.put(null, null);
-//		System.out.println(hashTable);
-//
-//		TreeMap<String, String> domains = new TreeMap<>();
-//		domains.put(".com", "International");
-//		domains.put(".us", "Unitedstates");
-//		domains.put(".uk", "United Kingdom");
-//		domains.put(".au", "Australia");
-//		domains.put(".jp", "Japan");
-//		domains.put(".eu", "European Union");
-//		domains.put("501", "Not Implemented");
-//		domains.put("100", "Continue");
+//		System.out.println(httpErrors);
+		NavigableMap<String, String> descendingKeySetNav = httpStatusCodes.descendingMap();
+		for (String httpStatusCode : descendingKeySetNav.keySet()) {
+			System.out.println("HTTPSTATUSCODE " + httpStatusCode + " " + descendingKeySetNav.get(httpStatusCode));
+		}
+
+		Set<String> ascendingKeys = httpStatusCodes.keySet();
+
+		System.out.println("Ascending Keys: " + ascendingKeys);
+
+		Set<String> descendingKeys = httpStatusCodes.descendingKeySet();
+
+		System.out.println("Descending Keys: " + descendingKeys);
+
+		String lowerKey = httpStatusCodes.lowerKey("401");
+		System.out.println("Lower key: " + lowerKey);
+
+		String floorKey = httpStatusCodes.floorKey("401");
+		System.out.println("Floor key: " + floorKey);
+
+		String higherKey = httpStatusCodes.higherKey("500");
+		System.out.println("Higher key: " + higherKey);
+
+		String ceilingKey = httpStatusCodes.ceilingKey("500");
+		System.out.println("Ceiling key: " + ceilingKey);
+
+		Map.Entry<String, String> firstEntry = httpStatusCodes.firstEntry();
+
+		System.out.println("First entry: " + firstEntry.getKey() + " => " + firstEntry.getValue());
+
+		Map.Entry<String, String> lastEntry = httpStatusCodes.lastEntry();
+
+		System.out.println("Last entry: " + lastEntry.getKey() + " => " + lastEntry.getValue());
+
+		Map.Entry<String, String> lowerEntry = httpStatusCodes.lowerEntry("401");
+		System.out.println("Lower entry: " + lowerEntry.getKey() + " => " + lowerEntry.getValue());
+
+		Map.Entry<String, String> floorEntry = httpStatusCodes.floorEntry("401");
+		System.out.println("Floor entry: " + floorEntry.getKey() + " => " + floorEntry.getValue());
+
+		Map.Entry<String, String> higherEntry = httpStatusCodes.higherEntry("500");
+		System.out.println("Higher entry: " + higherEntry.getKey() + " => " + higherEntry.getValue());
+
+		Map.Entry<String, String> ceilingEntry = httpStatusCodes.ceilingEntry("500");
+		System.out.println("Ceiling entry: " + ceilingEntry.getKey() + " => " + ceilingEntry.getValue());
+
+		httpStatusCodes.pollFirstEntry();
+		httpStatusCodes.pollLastEntry();
+
+		System.out.println("\nMap after first and last entries were polled:");
+
+		for (String key : httpStatusCodes.keySet()) {
+			System.out.println(key + " => " + httpStatusCodes.get(key));
+		}
 	}
 
 }
