@@ -1,0 +1,25 @@
+Java – the problems and limitations of the Date class
+
+In the post we will show what problems  Java Date  has. 
+In  Java 1.0 only support for date and time was the java.util.Date class.  
+The usability of this class is harmed by some wrong design decisions.
+
+
+For example if we want to create the  February 20, 2017 we need to create date object like this:
+Date date = new Date(118, 1, 20);
+
+
+This is because the year starts from 1900.
+And also the next problem is toString which returns also the current JVM’s timezone.
+
+Tue Feb 20 00:00:00 CET 2018
+
+In the next release java Date class has been deprecated and the new java.util.Calendar class has been added. Unfortunately, it has similar problems as well. For example the month index starts at 0.
+It becomes more difficult because they are two classes available Date and Calendar, and you don’t know which one to use.
+The new release brought some other problems (DateFormat class). It is not thread safe and it means if two threads will try to parse a date using the same formatter we will receive unpredictable results.
+
+Many java developers they use Joda Time which is a quite good library and Java8 integrated many features from it.
+
+So Java8 added new features in the java.time package, such as LocalDate, LocalTime, LocalDateTime, ZonedDateTime, etc…
+
+Tags: calendar, date, DateFormat, datetime, java, java8, localdate, LocalDateTime
